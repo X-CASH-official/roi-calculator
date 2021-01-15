@@ -32,7 +32,7 @@ $(document).ready(function() {
         amountValue = $("#amount").val();
         daysToCalculate = $("#days").val();
         if(amountValue == ""){
-            toastr['error']('Amount to vote is empty!'); 
+            toastr['error']('Amount to vote is empty!');
         } else {
             myVoteAmount = (amountValue.replace(/[kK]/,"000").replace(/[mM]/,"000000") * 1);
             populateTable()
@@ -57,23 +57,27 @@ function populateTable(){
         $.getJSON(delegatesDataURL, function(delegateData) {
             var delegateDataSet = [];
             $.each(delegateData, function(i, field) {
-                if(field.shared_delegate_status == "shared") {
+                if(field.shared_delegate_status == "shared" || field.shared_delegate_status == "group") {
 
                     var totalRewardFeeAmount    = (totalRewardAmount * field.delegate_fee / 100);
                     var totalRewardToDistribute = (totalRewardAmount - totalRewardFeeAmount);
                     var totalVotes              = ((field.total_vote_count / 1000000) + myVoteAmount); // Actual votes + voted amount
                     var myVoteReturnPct         = ((myVoteAmount * 100) / totalVotes);
                     var myVoteReturnAmount      = ((myVoteReturnPct * totalRewardToDistribute) / 100);
+                    var myVoteReturnROIPct      = ((myVoteReturnAmount * 100) / myVoteAmount);
 
                     var fields = [
                         "",
                         (i + 1),
-                        field.delegate_name,
+                        field.delegate_name + " ("+field.shared_delegate_status+")",
                         (field.online_status == "true") ? "Online" : "Offline",
-                        (field.delegate_fee) ? field.delegate_fee+"% ("+totalRewardFeeAmount.toLocaleString()+" XCASH)" : "Not set",
-                        (field.total_vote_count / 1000000).toLocaleString()+" XCASH",
+                        (field.delegate_fee) ? field.delegate_fee+"%" : "N/A",
+                        (field.delegate_fee) ?  totalRewardFeeAmount.toLocaleString() : "N/A",
+                        (field.total_vote_count / 1000000).toLocaleString(),
                         field.block_verifier_online_percentage+"%",
-                        myVoteReturnPct.toFixed(2)+"% ("+myVoteReturnAmount.toLocaleString()+" XCASH)"
+                        myVoteReturnPct.toFixed(2)+"%",
+                        myVoteReturnROIPct.toFixed(2)+"%",
+                        myVoteReturnAmount.toLocaleString()
                     ];
 
                     delegateDataSet.push(fields);
@@ -101,13 +105,16 @@ function populateTable(){
                 },
                 columns: [
                     { title: "" },
-                    { title: "Rank" },
-                    { title: "Delegate Name" },
+                    { title: "Rank", responsivePriority: 1 },
+                    { title: "Delegate Name", responsivePriority: 2 },
                     { title: "Status" },
-                    { title: "Fee" },
+                    { title: "Fee %" },
+                    { title: "Fee XCA" },
                     { title: "Votes" },
                     { title: "Online" },
-                    { title: "Net ROI" }
+                    { title: "Weight %"},
+                    { title: "ROI %", responsivePriority: 3 },
+                    { title: "ROI XCA" },
                 ]
             });
         });
