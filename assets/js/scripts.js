@@ -34,8 +34,15 @@ $(document).ready(function() {
         if(amountValue == ""){
             toastr['error']('Amount to vote is empty!');
         } else {
-            myVoteAmount = (amountValue.replace(/[kK]/,"000").replace(/[mM]/,"000000") * 1);
-            populateTable()
+            if(amountValue.includes("k") || amountValue.includes("K")){
+                myVoteAmount = (amountValue.replace(/["kK"]/,"") * 1000);
+            } else if(amountValue.includes("m") || amountValue.includes("M")){
+                myVoteAmount = (amountValue.replace(/["mM"]/,"") * 1000000);
+            } else {
+                myVoteAmount = (amountValue * 1);
+            }
+
+            populateTable();
         }
     });
 });
