@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="X-Network Foundation">
+        <link rel="icon" href="assets/images/favicon.png">
+
+        <title>DPoPS ROI Calculator</title>
+
+        <!-- CSS -->
+        <link href="dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="dist/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+        <link href="dist/css/responsive.bootstrap4.min.css" rel="stylesheet">
+        <link href="dist/css/toastr.min.css" rel="stylesheet">
+        <link href="assets/css/style.css" rel="stylesheet">
+    </head>
+
+    <body>
+
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+            <a href="#"><img src="assets/images/xcash.svg" height="40px"></img></a>
+
+            <div class="custom-switch">
+                <input type="checkbox" class="custom-control-input" id="darkSwitch">
+                <label class="custom-control-label" for="darkSwitch">Dark</label>
+            </div>
+
+            <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbar">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link btn" href="http://delegates.xcash.foundation/dashboard" target="_blank">Delegates</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://www.xcash.foundation/" target="_blank">Foundation</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+
+        <div class="main-page">
+            <h1>X-CASH DPoPS ROI Calculator</h1>
+
+            <div class="row justify-content-md-center">
+                <div class="col-md-4 col-xs-12">
+                    <small class="help-block">You can use short forms like 2M, 250k, etc.</small>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Amount to vote (default 2M)" id="amount">
+                    </div>
+                    <small class="help-block">Select the period you want to calculate</small>
+                    <div class="form-group">
+                        <select class="form-control" id="days">
+                            <option value="1">One day</option>
+                            <option value="7">One week</option>
+                            <option value="30" selected>One month</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-outline-info btn-block" id="calculate">Calculate my profit!</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="table-responsive">
+                <table id="delegatesTable" class="table display hover" style="width:100%"></table>
+            </div>
+        </div>
+
+        <!-- JavaScript -->
+        <script src="dist/js/jquery-3.5.1.js"></script>
+        <script src="dist/js/bootstrap.min.js"></script>
+        <script src="dist/js/jquery.dataTables.min.js"></script>
+        <script src="dist/js/dataTables.bootstrap4.min.js"></script>
+        <script src="dist/js/dataTables.responsive.min.js"></script>
+        <script src="dist/js/responsive.bootstrap4.min.js"></script>
+        <script src="dist/js/toastr.min.js"></script>
+        <script src="dist/js/dark-mode-switch.min.js"></script>
+        <script src="assets/js/scripts.js"></script>
+
+    </body>
+</html>
