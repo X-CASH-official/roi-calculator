@@ -76,14 +76,15 @@ function populateTable(){
                     var fields = [
                         "",
                         (i + 1),
-                        field.delegate_name + " ("+field.shared_delegate_status+")",
-                        (field.online_status == "true") ? "Online" : "Offline",
-                        (field.delegate_fee) ? field.delegate_fee+"%" : "N/A",
-                        (field.delegate_fee) ?  totalRewardFeeAmount.toLocaleString() : "N/A",
+                        '<a class="delegate_link tip" href="http://delegates.xcash.foundation/delegates/delegate_statistics?data='+ field.delegate_name +'" aria-label="Visit '+ field.delegate_name +'" title="Visit '+ field.delegate_name +'">' + field.delegate_name.slice(0, 45) + '</a>',
+                        (field.shared_delegate_status == 'Solo') ? '<span class="material-icons">person_outline</span>' : ((field.shared_delegate_status == 'Shared') ? '<span class="material-icons">groups</span>' : '<span class="material-icons">lock</span>'),
+                        (field.online_status == 'true') ? '<span class="material-icons Online">online_prediction</span>' : '<span class="material-icons Offline">highlight_off</span>',
+                        (field.delegate_fee) ? field.delegate_fee+'%' : 'N/A',
+                        (field.delegate_fee) ?  totalRewardFeeAmount.toLocaleString() : 'N/A',
                         (field.total_vote_count / 1000000).toLocaleString(),
                         field.block_verifier_online_percentage+"%",
-                        myVoteReturnPct.toFixed(2)+"%",
-                        myVoteReturnROIPct.toFixed(2)+"%",
+                        myVoteReturnPct.toFixed(2)+'%',
+                        myVoteReturnROIPct.toFixed(2)+'%',
                         myVoteReturnAmount.toLocaleString()
                     ];
 
@@ -93,6 +94,8 @@ function populateTable(){
 
             var table = $('#delegatesTable').DataTable({
                 destroy: true,
+                "bScrollCollapse": false,
+                "bPaginate": false,
                 responsive: {
                     details: {
                         type: 'column'
@@ -114,6 +117,7 @@ function populateTable(){
                     { title: "" },
                     { title: "Rank", responsivePriority: 1 },
                     { title: "Delegate Name", responsivePriority: 2 },
+                    { title: "Mode" },
                     { title: "Status" },
                     { title: "Fee %" },
                     { title: "Fee XCA" },

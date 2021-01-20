@@ -1,10 +1,21 @@
 body {
     padding-top: 2rem;
+    background-image: url("../images/boy_computer_voting.svg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: left bottom;
 }
 
 .main-page {
     padding: 3rem 1.5rem;
     text-align: center;
+}
+.navbar{
+  border-bottom: 2px #fa741c solid;
+}
+.bg_orange{
+  background-color: #fa741c;
+  color: #f1f1f1;
 }
 
 @media only screen and (min-width: 768px) {
@@ -31,11 +42,11 @@ body {
 }
 
 .custom-switch>label {
-    color: #ffffff80 !important;
+    /* color: #ffffff80 !important; */
 }
 
 [data-theme="dark"] {
-    background-color: #343a40 !important;
+    background-color: #1f1f1f !important;
     color: #fff !important;
 }
 
@@ -62,3 +73,12 @@ body {
     color: #fff !important;
 }
 
+/* x-cash logo colours */
+.st1{fill:#1f1f1f}
+.st2{fill:#fa741c}
+
+[data-theme="dark"] .st1{fill:#f1f1f1}
+[data-theme="dark"] .st2{fill:#fa741c}
+
+.Online { color: green; }
+.Offline { color: red; }
