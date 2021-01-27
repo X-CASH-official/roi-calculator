@@ -101,6 +101,7 @@ function populateTable(){
                     { title: "" },
                     { title: "Rank", responsivePriority: 1 },
                     { title: "Delegate Name", responsivePriority: 2 },
+                    { title: "Mode" },
                     { title: "Status" },
                     { title: "Mode" },
                     { title: "Votes" },
