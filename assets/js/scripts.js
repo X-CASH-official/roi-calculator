@@ -6,44 +6,28 @@ $(document).ready(function() {
     totalBlockVerifiers = 45;
 
     myVoteAmount = 2000000;
+    daysToCalculate = $( "input[type='radio']:checked" ).val();
 
-    daysToCalculate = $("#days").val();
     populateTable();
 
-    toastr.options = {
-        "closeButton": false,
-        "debug": false,
-        "newestOnTop": false,
-        "progressBar": true,
-        "positionClass": "toast-top-center",
-        "preventDuplicates": true,
-        "onclick": null,
-        "showDuration": "300",
-        "hideDuration": "1000",
-        "timeOut": "5000",
-        "extendedTimeOut": "1000",
-        "showEasing": "swing",
-        "hideEasing": "linear",
-        "showMethod": "fadeIn",
-        "hideMethod": "fadeOut"
-    }
-
     $("#calculate").click(function(){
-        amountValue = $("#amount").val();
-        daysToCalculate = $("#days").val();
-        if(amountValue == ""){
-            toastr['error']('Amount to vote is empty!');
-        } else {
-            if(amountValue.includes("k") || amountValue.includes("K")){
-                myVoteAmount = (amountValue.replace(/["kK"]/,"") * 1000);
-            } else if(amountValue.includes("m") || amountValue.includes("M")){
-                myVoteAmount = (amountValue.replace(/["mM"]/,"") * 1000000);
-            } else {
-                myVoteAmount = (amountValue * 1);
-            }
 
-            populateTable();
+        amountValue = $("#amount").val();
+        daysToCalculate = $( "input[type='radio']:checked" ).val();
+
+        if(amountValue == ""){
+            myVoteAmount = 2000000;
         }
+
+        if(amountValue.includes("k") || amountValue.includes("K")){
+            myVoteAmount = (amountValue.replace(/["kK"]/,"") * 1000);
+        } else if(amountValue.includes("m") || amountValue.includes("M")){
+            myVoteAmount = (amountValue.replace(/["mM"]/,"") * 1000000);
+        } else {
+            myVoteAmount = (amountValue * 1);
+        }
+
+        populateTable();
     });
 });
 
@@ -75,17 +59,17 @@ function populateTable(){
 
                     var fields = [
                         "",
-                        (i + 1),
-                        '<a class="delegate_link tip" href="http://delegates.xcash.foundation/delegates/delegate_statistics?data='+ field.delegate_name +'" aria-label="Visit '+ field.delegate_name +'" title="Visit '+ field.delegate_name +'">' + field.delegate_name.slice(0, 45) + '</a>',
-                        (field.shared_delegate_status == 'Solo') ? '<span class="material-icons">person_outline</span>' : ((field.shared_delegate_status == 'Shared') ? '<span class="material-icons">groups</span>' : '<span class="material-icons">lock</span>'),
+                        '<span class="'+  ((i + 1) <= 50 ? 'Online' : 'Offline') +'">' + (i + 1) + '</span>',
+                        '<a class="delegate_link tip" href="http://delegates.xcash.foundation/delegates/delegate_statistics?data='+ field.delegate_name +'" aria-label="Visit '+ field.delegate_name +'" title="Visit '+ field.delegate_name +'">' + field.delegate_name.slice(0, 25) + '</a>',
                         (field.online_status == 'true') ? '<span class="material-icons Online">online_prediction</span>' : '<span class="material-icons Offline">highlight_off</span>',
-                        (field.delegate_fee) ? field.delegate_fee+'%' : 'N/A',
-                        (field.delegate_fee) ?  totalRewardFeeAmount.toLocaleString() : 'N/A',
-                        (field.total_vote_count / 1000000).toLocaleString(),
+                        (field.shared_delegate_status === 'solo') ? '<span class="material-icons">person_outline</span>' : ((field.shared_delegate_status === 'shared') ? '<span class="material-icons">groups</span>' : '<span class="material-icons">lock</span>'),
+                        (field.total_vote_count / 1000000).toLocaleString(undefined, {maximumFractionDigits: 0}),
                         field.block_verifier_online_percentage+"%",
+                        (field.delegate_fee) ? field.delegate_fee+'%' : 'N/A',
+                        (field.delegate_fee) ?  totalRewardFeeAmount.toLocaleString(undefined, {maximumFractionDigits: 0}) : 'N/A',
                         myVoteReturnPct.toFixed(2)+'%',
                         myVoteReturnROIPct.toFixed(2)+'%',
-                        myVoteReturnAmount.toLocaleString()
+                        myVoteReturnAmount.toLocaleString(undefined, {maximumFractionDigits: 0})
                     ];
 
                     delegateDataSet.push(fields);
@@ -117,12 +101,12 @@ function populateTable(){
                     { title: "" },
                     { title: "Rank", responsivePriority: 1 },
                     { title: "Delegate Name", responsivePriority: 2 },
-                    { title: "Mode" },
                     { title: "Status" },
-                    { title: "Fee %" },
-                    { title: "Fee XCA" },
+                    { title: "Mode" },
                     { title: "Votes" },
                     { title: "Online" },
+                    { title: "Fee %" },
+                    { title: "Fee XCA" },
                     { title: "Weight %"},
                     { title: "ROI %", responsivePriority: 3 },
                     { title: "ROI XCA" },
