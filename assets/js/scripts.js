@@ -11,22 +11,19 @@ $(document).ready(function() {
     populateTable();
 
     $("#calculate").click(function(){
-
         amountValue = $("#amount").val();
         daysToCalculate = $( "input[type='radio']:checked" ).val();
-
         if(amountValue == ""){
             myVoteAmount = 2000000;
+        }else{
+          if(amountValue.includes("k") || amountValue.includes("K")){
+              myVoteAmount = (amountValue.replace(/["kK"]/,"") * 1000);
+          } else if(amountValue.includes("m") || amountValue.includes("M")){
+              myVoteAmount = (amountValue.replace(/["mM"]/,"") * 1000000);
+          } else {
+              myVoteAmount = (amountValue * 1);
+          }
         }
-
-        if(amountValue.includes("k") || amountValue.includes("K")){
-            myVoteAmount = (amountValue.replace(/["kK"]/,"") * 1000);
-        } else if(amountValue.includes("m") || amountValue.includes("M")){
-            myVoteAmount = (amountValue.replace(/["mM"]/,"") * 1000000);
-        } else {
-            myVoteAmount = (amountValue * 1);
-        }
-
         populateTable();
     });
 });
@@ -103,7 +100,6 @@ function populateTable(){
                     { title: "Delegate Name", responsivePriority: 2 },
                     { title: "Mode" },
                     { title: "Status" },
-                    { title: "Mode" },
                     { title: "Votes" },
                     { title: "Online" },
                     { title: "Fee %" },
