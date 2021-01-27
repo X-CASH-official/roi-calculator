@@ -77,6 +77,9 @@ function populateTable(){
                 destroy: true,
                 "bScrollCollapse": false,
                 "bPaginate": false,
+                "dom": "<'row'<'col-lg-12 col-md-12 col-xs-12'f><'col-lg-0 col-md-0 col-xs-12'l>>" +
+           "<'row'<'col-sm-12'tr>>" +
+           "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
                 responsive: {
                     details: {
                         type: 'column'
@@ -92,7 +95,7 @@ function populateTable(){
                 data: delegateDataSet,
                 language: {
                     search: "_INPUT_",
-                    searchPlaceholder: "Search..."
+                    searchPlaceholder: "Search Delegates..."
                 },
                 columns: [
                     { title: "" },
