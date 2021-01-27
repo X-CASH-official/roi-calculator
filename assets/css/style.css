@@ -1,8 +1,4 @@
 body {
-    /* background-image: url("../images/boy_computer_voting.svg");
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: left bottom; */
     padding-bottom: 5rem;
     height: 100%;
     font-family: Monumentgrotesktrial,sans-serif;
@@ -11,7 +7,6 @@ body {
     font-weight: 700;
     text-decoration: none;
 }
-
 .main-page {
     padding: 3rem 1.5rem;
     text-align: center;
@@ -306,7 +301,6 @@ a {
 /* x-cash logo colours */
 .st1{fill:#1f1f1f}
 .st2{fill:#fa741c}
-
 [data-theme="dark"] .st1{fill:#f1f1f1}
 [data-theme="dark"] .st2{fill:#fa741c}
 
@@ -348,7 +342,9 @@ td > a,td > a:hover,td > a:visited {
 .form-control, .border-orange {
     background-clip: padding-box;
     border: 1px solid #ff6d00;
+    border-radius: .25rem;
     color: #ff6d00 !important;
+    padding: 6px!important;
 }
 .form-check-inline {
     display: inline-block;
@@ -403,15 +399,21 @@ div.dataTables_wrapper div.dataTables_filter input:focus {
  font-size: 40px;
  color: #f1f1f1;
 }
+#amount{
+  font-weight: 700;
+}
 .form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
   color:  #ff6d00;
   opacity: 1; /* Firefox */
+  font-weight: 700;
 }
 
 .form-control:-ms-input-placeholder { /* Internet Explorer 10-11 */
   color:  #ff6d00;
+  font-weight: 700;
 }
 
 .form-control::-ms-input-placeholder { /* Microsoft Edge */
   color:  #ff6d00;
+  font-weight: 700;
  }
