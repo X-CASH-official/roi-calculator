@@ -417,3 +417,7 @@ div.dataTables_wrapper div.dataTables_filter input:focus {
   color:  #ff6d00;
   font-weight: 700;
  }
+ input:focus::-webkit-input-placeholder
+ {
+     color: transparent;
+ }
