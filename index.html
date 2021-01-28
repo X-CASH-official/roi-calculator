@@ -1,88 +1,393 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="">
-        <meta name="author" content="X-Network Foundation">
-        <link rel="icon" href="assets/images/favicon.png">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="index,follow"/>
+    <meta name="googlebot" content="index,follow"/>
+    <title>X-Cash | DPoPS ROI Staking Calculator</title>
+    <meta name="author" content="X-Cash Foundation">
+    <meta name="description" content="X-Cash Staking Calculator. A profit calculator for X-Cash. Calculate your staking rewards and earnings. Our staking rewards profit calculator helps you work out how much you can earn.">
 
-        <title>DPoPS ROI Calculator</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png">
+    <link rel="manifest" href="assets/icons/site.webmanifest">
+    <link rel="mask-icon" href="assets/icons/safari-pinned-tab.svg" color="#1f1f1f">
+    <link rel="shortcut icon" href="assets/icons/favicon.ico">
+    <meta name="msapplication-TileColor" content="#00aba9">
+    <meta name="msapplication-config" content="assets/icons/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+  	<!-- Schema.org markup -->
+  	<meta itemprop="name" content="X-Cash DPoPS ROI Calculator">
+  	<meta property="url" content="http://calculator.xcash.foundation" />
+  	<meta property="description" content="X-Cash Staking Calculator. A profit calculator for X-Cash. Calculate your staking rewards and earnings. Our staking rewards profit calculator helps you work out how much you can earn." />
+    <!-- OG -->
+    <meta property="og:title" content="X-Cash DPoPS ROI Calculator">
+    <meta property="og:site_name" content="X-Cash | Private Cryptocurrency for the Web3.0" />
+    <meta property="og:url" content="http://calculator.xcash.foundation">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="http://delegates.xcash.foundation/assets/icons/apple-touch-icon-180x180.png">
+    <meta property="og:description" content="X-Cash Staking Calculator. A profit calculator for X-Cash. Calculate your staking rewards and earnings. Our staking rewards profit calculator helps you work out how much you can earn.">
+    <!-- Twitte Card -->
+    <meta name="twitter:card" content="app">
+    <meta name="twitter:domain" value="http://calculator.xcash.foundation">
+    <meta name="twitter:title" value="X-Cash DPoPS ROI Calculator">
+    <meta name="twitter:description" value="X-Cash DPoPS ROI Calculator.">
+    <meta name="twitter:image" content="http://delegates.xcash.foundation/assets/icons/apple-touch-icon-180x180.png">
+    <meta name="twitter:url" value="http://calculator.xcash.foundation/">
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="dist/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" type="text/css" href="dist/css/responsive.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="dist/css/responsive.bootstrap.min.css">
+    <!-- Icons  -->
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons" rel="stylesheet">
+    <!-- Font -->
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        WebFont.load({ google: { families: ["Exo:100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic"] } });
+    </script>
+    <!-- Custom CSS -->
+    <link href="assets/css/style.css" rel="stylesheet">
+  </head>
 
-        <!-- CSS -->
-        <link href="dist/css/bootstrap.min.css" rel="stylesheet">
-        <link href="dist/css/dataTables.bootstrap4.min.css" rel="stylesheet">
-        <link href="dist/css/responsive.bootstrap4.min.css" rel="stylesheet">
-        <link href="dist/css/toastr.min.css" rel="stylesheet">
-        <link href="assets/css/style.css" rel="stylesheet">
-    </head>
+  <body>
 
-    <body>
+    <div role="banner" class="w-nav ">
+      <div class="container w-container">
+        <nav class="navbar navbar-expand-md ">
+          <div class="container-fluid">
+            <a href="https://www.xcash.foundation" aria-current="page" class="brand w-nav-brand" aria-label="X-Cash Foundation">
+                <svg version="1.1" id="xlogo" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 684 195"  height="47" xml:space="preserve">
+                  <path class="st1" d="M293.8 153.5c-5.2 10.1-12.5 18.3-21.8 24.8-9.4 6.4-21 9.6-35 9.6-9.3 0-17.8-1.6-25.5-4.8s-14.4-7.6-20-13.3-10-12.4-13.2-20.1c-3.2-7.7-4.8-16.2-4.8-25.5s1.6-17.8 4.8-25.6 7.6-14.5 13.2-20.1c5.6-5.6 12.3-10 20-13.2 7.7-3.2 16.2-4.8 25.5-4.8 13.8 0 25.5 3.2 34.9 9.5 9.4 6.3 16.3 14.6 20.7 24.6l-29.3 12.2c-2.8-5.5-6.3-9.7-10.6-12.6-4.3-2.8-9.7-4.3-16.2-4.3-4.2 0-8.2.8-12 2.4-3.7 1.6-7 3.9-9.9 6.8-2.8 2.9-5.1 6.5-6.7 10.7-1.6 4.2-2.4 8.9-2.4 14.2 0 5.2.8 9.9 2.4 14.2 1.6 4.2 3.9 7.8 6.7 10.7s6.1 5.2 9.9 6.8c3.7 1.6 7.7 2.4 12 2.4 6.7 0 12.3-1.5 17-4.5 4.6-3 8.3-7.4 11.1-13.1l29.2 13zM385.8 171.3h-2c-3.7 4.6-8.3 8.5-13.5 11.7-5.3 3.3-12.1 4.9-20.4 4.9-6.2 0-12-1-17.4-3.1-5.5-2-10.2-4.8-14.3-8.4-4.1-3.6-7.2-7.9-9.5-12.9s-3.4-10.6-3.4-16.6c0-6.2 1.2-11.7 3.7-16.7 2.4-5 5.9-9.2 10.2-12.8 4.4-3.6 9.6-6.3 15.5-8.2 5.9-1.9 12.4-2.8 19.4-2.8 7.8 0 14.2.6 19.3 1.8 5 1.2 9.2 2.5 12.4 3.8v-3.7c0-6.3-2.5-11.6-7.6-15.7-5-4.1-11.3-6.2-18.8-6.2-11.1 0-20.4 4.6-28.1 13.9l-23.2-15.9c12.7-15.9 30-23.9 52-23.9 18.5 0 32.7 4.4 42.5 13.1s14.6 21.6 14.6 38.7V184h-31.5l.1-12.7zm0-35.8c-3.7-1.8-7.6-3.2-11.6-4.3s-8.3-1.6-13.1-1.6c-7.6 0-13.5 1.7-17.7 5-4.1 3.3-6.2 7.4-6.2 12.3s2 8.8 6 11.7 8.6 4.4 13.8 4.4c4.2 0 8.1-.8 11.7-2.3s6.6-3.6 9.1-6.1 4.5-5.4 5.9-8.8c1.4-3.3 2.1-6.8 2.1-10.3zM488.8 187.9c-7.8 0-14.8-1-20.9-2.9-6.1-2-11.4-4.5-15.9-7.7s-8.3-6.8-11.3-11c-3.1-4.1-5.5-8.3-7.1-12.6l28.5-12.2c2.8 6.2 6.5 10.8 11.1 13.8s9.8 4.5 15.5 4.5c5.9 0 10.5-1.1 13.9-3.2 3.4-2.1 5.1-4.6 5.1-7.6 0-3.3-1.4-5.9-4.3-7.9-2.8-2-7.8-3.9-14.8-5.5L472 132c-3.7-.8-7.6-2.1-11.6-3.9-4-1.8-7.6-4.1-10.9-6.8-3.3-2.8-5.9-6.1-8.1-10-2.1-3.9-3.2-8.5-3.2-13.7 0-5.9 1.3-11.1 3.8-15.6 2.5-4.6 6-8.4 10.4-11.6s9.6-5.6 15.5-7.3 12.3-2.6 19.2-2.6c11.4 0 21.6 2.2 30.5 6.7 8.9 4.5 15.5 11.6 19.8 21.3l-27.6 11.2c-2.3-4.7-5.6-8.1-10-10.2s-8.8-3.2-13.2-3.2c-4.6 0-8.5.9-12 2.8-3.4 1.9-5.1 4.3-5.1 7.2 0 2.8 1.4 5 4.3 6.6 2.8 1.6 6.7 3.1 11.6 4.4l18.3 4.4c12.2 2.9 21.3 7.6 27.2 14 5.9 6.4 8.9 14 8.9 22.8 0 5.2-1.2 10.2-3.7 14.9-2.4 4.7-5.9 8.9-10.4 12.6-4.5 3.7-9.8 6.5-16.1 8.7-6.2 2.2-13.2 3.2-20.8 3.2zM559.3 9.3h32v49l-2 21.7h2c3.4-5.7 8.3-10.4 14.8-14 6.4-3.7 13.6-5.5 21.6-5.5 15.5 0 26.9 4.6 34.3 13.7 7.4 9.1 11.1 21.6 11.1 37.3V184h-32v-68.6c0-8.3-2-14.6-5.9-18.9s-9.4-6.5-16.3-6.5c-4.4 0-8.3.9-11.7 2.8s-6.3 4.4-8.7 7.7c-2.4 3.3-4.1 7-5.4 11.3-1.2 4.3-1.8 8.9-1.8 13.8V184h-32V9.3z"/>
+                  <circle class="st2" cx="30" cy="84.3" r="20"/>
+                  <path class="st1" d="M56.5 124.2c0 14.7-11.9 19.9-26.6 19.9-11 0-20 8.9-20 20s8.9 20 20 20 20-8.9 20-20c0-14.7 5.3-26.6 19.9-26.6s19.9 11.9 19.9 26.6c0 11 8.9 20 20 20s20-8.9 20-20-8.9-20-20-20c-14.7 0-26.6-5.2-26.6-19.9s11.9-19.9 26.6-19.9c11 0 20-8.9 20-20s-8.9-20-20-20-20 8.9-20 20c0 14.7-5.2 26.6-19.9 26.6-7.3 0-13.2 5.9-13.3 13.3"/>
+                  <circle class="st2" cx="53.3" cy="105.8" r="8.3"/>
+                </svg>
+            </a>
 
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-            <a href="#"><img src="assets/images/xcash.svg" height="40px"></img></a>
-
-            <div class="custom-switch">
-                <input type="checkbox" class="custom-control-input" id="darkSwitch">
-                <label class="custom-control-label" for="darkSwitch">Dark</label>
-            </div>
-
-            <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="material-icons">menu</span>
             </button>
 
-            <div class="collapse navbar-collapse" id="navbar">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link btn" href="http://delegates.xcash.foundation/dashboard" target="_blank">Delegates</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="https://www.xcash.foundation/" target="_blank">Foundation</a>
-                    </li>
-                </ul>
+            <div class="collapse navbar-collapse" id="navbarContent">
+              <ul class="navbar-nav nav-menu">
+                <li class="nav-item">
+                  <a class="nav-link w-nav-link" href="https://www.xcash.foundation/project">Project</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link w-nav-link" href="https://www.xcash.foundation/contribute">Contribute</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link w-nav-link" href="https://www.xcash.foundation/wallet">Wallets</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link w-nav-link" href="https://www.xcash.foundation/blog">Blog</a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Tools
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a href="https://docs.xcash.foundation/" class="dropdown-item dropdown-link w-dropdown-link" tabindex="0">Documentation</a></li>
+                    <li><a href="https://github.com/X-CASH-official" class="dropdown-item dropdown-link w-dropdown-link" tabindex="0">GitHub</a></li>
+                    <li><a href="https://explorer.x-cash.org/Explorer" class="dropdown-item dropdown-link w-dropdown-link" tabindex="0">Blockchain Explorer</a></li>
+                    <li><a href="http://delegates.xcash.foundation" class="dropdown-item dropdown-link w-dropdown-link" tabindex="0">Delegates Explorer</a></li>
+                    <li><a href="https://x-bank.io" class="dropdown-item dropdown-link w-dropdown-link" tabindex="0">X-Bank</a></li>
+                  </ul>
+                </li>
+                <li class="nav-item">
+                  <a href="https://www.xcash.foundation/get-started" class=" button-orange-centered navbar  w-button">Get Started</a>
+                </li>
+              </ul>
+              <div class="custom-switch">
+               <label>
+                 <input id="darkSwitch" type="checkbox" aria-label="Switch Theme!" title="Switch Theme"/>
+                 <div class="switch">
+                   <span class="material-icons" id="darkSwitch">invert_colors</span>
+                 </div>
+               </label>
+              </div>
             </div>
+          </div>
         </nav>
-
-
-        <div class="main-page">
-            <h1>X-CASH DPoPS ROI Calculator</h1>
-
-            <div class="row justify-content-md-center">
-                <div class="col-md-4 col-xs-12">
-                    <small class="help-block">You can use short forms like 2M, 250k, etc.</small>
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Amount to vote (default 2M)" id="amount">
-                    </div>
-                    <small class="help-block">Select the period you want to calculate</small>
-                    <div class="form-group">
-                        <select class="form-control" id="days">
-                            <option value="1">One day</option>
-                            <option value="7">One week</option>
-                            <option value="30" selected>One month</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <button type="button" class="btn btn-outline-info btn-block" id="calculate">Calculate my profit!</button>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="table-responsive">
-                <table id="delegatesTable" class="table display hover" style="width:100%"></table>
+      </div>
+    </div>
+    <div class="main-page">
+      <div class="medium">
+        <div id="medium-widget"></div>
+      </div>
+      <h1 class="pt-3">ROI Calculator</h1>
+      <p>Now you can do more than hodling X-Cash; see how much rewards you can possibly earn by staking X-Cash.<br/>
+        The rewards predicted by this calculator are only an estimate.</p>
+      <!-- <h3>for X-Cash DPoPS</h3> -->
+      <div class="row  justify-content-center pt-3 pb-4">
+        <div class="col-auto form-group  pt-1 pb-2" style="width:417px;">
+            <label for="days" class="">Amount</label>
+            <input type="text" class="form-control text-center" placeholder="Amount to vote (default 2M)" id="amount">
+            <div id="amountHelpBlock" class="form-text">
+              You can use short forms like 2M, 250k, etc.
             </div>
         </div>
+        <div class="col-auto  pt-1 pb-1">
+          <label for="days" class="">Period</label>
+          <div class="form-group border-orange">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="days" id="period1" value="1">
+              <label class="form-check-label" for="period1">1 Day</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="days" id="period2" value="7">
+              <label class="form-check-label" for="period2">Week</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="days" id="period3" value="30" checked>
+              <label class="form-check-label" for="period3">Month</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="days" id="period4" value="365">
+              <label class="form-check-label" for="period4">Year</label>
+            </div>
+          </div>
+          <div id="daysHelpBlock" class="form-text">
+            Select the period you want to calculate
+          </div>
+        </div>
+        <div class="col-auto form-group mt-1 pt-4 pb-2">
+            <label for="days" class="visually-hidden">Calculate</label>
+            <button type="button" class="btn btn-outline-info form-control mb-3" id="calculate">Calculate my profit!</button>
+        </div>
+      </div>
+      <div class="table-responsive">
+          <table id="delegatesTable" class="table display hover" style="width:100%"></table>
+      </div>
+    </div>
 
-        <!-- JavaScript -->
-        <script src="dist/js/jquery-3.5.1.js"></script>
-        <script src="dist/js/bootstrap.min.js"></script>
-        <script src="dist/js/jquery.dataTables.min.js"></script>
-        <script src="dist/js/dataTables.bootstrap4.min.js"></script>
-        <script src="dist/js/dataTables.responsive.min.js"></script>
-        <script src="dist/js/responsive.bootstrap4.min.js"></script>
-        <script src="dist/js/toastr.min.js"></script>
-        <script src="dist/js/dark-mode-switch.min.js"></script>
-        <script src="assets/js/scripts.js"></script>
+    <div class="disclaimer p-4 text-left text-xs-start">
+      <strong>Disclaimer:</strong><br/>
+        This calculator only predicts an estimate of rewards.
+        The actual amount of X-Cash earned may vary and will depend on several factors,
+        including actual node/delegate settings, performance and changes to network parameters.
+        X-Cash provides this calculator for guidance only and accepts no responsibility for any discrepancy between estimated and actual rewards.
+    </div>
 
-    </body>
+    <footer id="footer" class="text-center p-4">
+      Copyright © 2021
+      Made with love by the X-Cash Foundation.
+      All rights reserved.
+    </footer>
+
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "url": "https://www.xcash.foundation",
+      "name": "X-Cash Foundation",
+      "alternateName": "X-Cash",
+      "logo": "http://delegates.xcash.foundation/assets/icons/apple-touch-icon-180x180.png",
+      "description": "X-Cash is a community driven open-source ‍‍project providing the toolbox for the next stage of the web. Built upon the reliable and tested Monero, the X-Cash blockchain has evolved to bring new features in the private cryptocurrency space.",
+      "disambiguatingDescription": "X-Cash Private Cryptocurrency for the Web3.0",
+      "sameAs": [
+        "https://medium.com/x-cash",
+        "https://twitter.com/XCashCrypto",
+        "https://linktr.ee/x.cash",
+        "https://github.com/X-CASH-official",
+        "https://docs.xcash.foundation/",
+        "https://x-network.io",
+        "https://explorer.x-cash.org/Explorer",
+        "https://discord.gg/4CAahnd",
+        "https://t.me/xcashglobal",
+        "https://bitcointalk.org/index.php?topic=4781246.0",
+        "https://www.reddit.com/r/xcash/"
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "X-Cash DPoPS ROI Calculator",
+      "operatingSystem": "All",
+      "url": "http://calculator.xcash.foundation",
+      "browserRequirements": "Requires HTML5 and Javacript support",
+      "applicationCategory": "BusinessApplication",
+      "applicationSubCategory": "Calculator, Cryptocurrency, Staking, ROI",
+      "softwareHelp": {
+        "@type": "CreativeWork",
+        "url": "https://discord.gg/4CAahnd"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    [
+      {
+        "@context": "http://schema.org",
+        "@type": "WebSite",
+        "@id": "https://www.xcash.foundation/#website",
+        "additionalType": ["Project"," Organization"],
+        "url": "https://www.xcash.foundation/",
+        "name": "X-Cash",
+        "headline": "X-Cash | Private Cryptocurrency for the Web3.0",
+        "image": "http://delegates.xcash.foundation/assets/icons/apple-touch-icon-180x180.png",
+        "inLanguage": "en",
+        "description": "X-Cash is an open-source blockchain consensus designed for the Web 3.0. X-Cash is a community driven open-source ‍‍project providing the toolbox for the next stage of the web. Built upon the reliable and tested Monero, the X-Cash blockchain has evolved to bring new features in the private cryptocurrency space: Public/Private Transactions, Delegated Proof-of-Private-Stake and Sidechains. Privacy when needed. Transparency to achieve compliance. Decentralized anonymous governance.",
+        "disambiguatingDescription": "X-Cash Private Cryptocurrency for the Web3.0",
+        "isFamilyFriendly": "http://schema.org/True",
+        "author": {
+          "@type": "Organization",
+          "name": "X-Cash Foundation",
+          "url": "https://www.xcash.foundation/"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "X-Cash Foundation",
+          "url": "https://www.xcash.foundation/"
+        },
+        "keywords":[
+          "X-CASH","blockchain","cryptocurrency","privacy", "staking", "Monero", "FlexPrivacy", "Public/Private Transactions", "Sidechains", "DPoPS", "Delegated Proof-of-Private-Stake", "Open-source", "Community-driven","Self-Funded", "Coin", "Foundation", "non-profit", "Hybrid Transactions", "Smart Contracts", "Non-Fungible Tokens", "NFT" ,"wXCASH", "wrapped XCASH", "ERC20", "Ethereum", "Cryptonight"
+        ],
+        "hasPart": [
+          {
+            "@context": "http://schema.org/",
+            "@type": "WPHeader",
+            "@id": "#navbarContent",
+            "cssSelector": "#navbarContent"
+          },
+          {
+            "@context": "http://schema.org/",
+            "@type": "WPFooter",
+            "cssSelector": "#footer",
+            "@id": "#footer",
+            "copyrightHolder":"X-Cash Foundation",
+            "publisher": "X-Cash Foundation",
+            "copyrightYear":"2021"
+          }
+        ]
+      }
+    ]
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph":
+      [
+             {
+              "@context": "https://schema.org",
+              "@type":"SiteNavigationElement",
+              "@id":"#navbarContent",
+              "name": "Project",
+              "url": "https://www.xcash.foundation/project"
+          },
+            {
+              "@context": "https://schema.org",
+              "@type":"SiteNavigationElement",
+              "@id":"#navbarContent",
+              "name": "Contribute",
+              "url": "https://www.xcash.foundation/contribute"
+          },
+            {
+              "@context": "https://schema.org",
+              "@type":"SiteNavigationElement",
+              "@id":"#navbarContent",
+              "name": "Wallets",
+              "url": "https://www.xcash.foundation/wallet"
+          },
+            {
+              "@context": "https://schema.org",
+              "@type":"SiteNavigationElement",
+              "@id":"#navbarContent",
+              "name": "Blog",
+              "url": "https://www.xcash.foundation/blog"
+          },
+            {
+              "@context": "https://schema.org",
+              "@type":"SiteNavigationElement",
+              "@id":"#navbarContent",
+              "name": "Documentation",
+              "url": "https://docs.xcash.foundation/"
+          },
+            {
+              "@context": "https://schema.org",
+              "@type":"SiteNavigationElement",
+              "@id":"#navbarContent",
+              "name": "Github",
+              "url": "https://github.com/X-CASH-official"
+          },
+            {
+              "@context": "https://schema.org",
+              "@type":"SiteNavigationElement",
+              "@id":"#navbarContent",
+              "name": "Blockchain Explorer",
+              "url": "https://explorer.x-cash.org/Explorer"
+          },
+
+          {
+              "@context": "https://schema.org",
+              "@type":"SiteNavigationElement",
+              "@id":"#navbarContent",
+              "name": "Delegates Explorer",
+              "url": "http://delegates.xcash.foundation/"
+          },
+          {
+              "@context": "https://schema.org",
+              "@type":"SiteNavigationElement",
+              "@id":"#navbarContent",
+              "name": "X-Bank",
+              "url": "https://x-bank.io/"
+          }
+          ,
+          {
+              "@context": "https://schema.org",
+              "@type":"SiteNavigationElement",
+              "@id":"#navbarContent",
+              "name": "Get Started",
+              "url": "https://www.xcash.foundation/get-started"
+          }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+  	[
+  	  {
+  	    "@context": "http://schema.org",
+  	    "@type": "Webpage",
+  	    "specialty": "X-Cash, DPoPS, ROI, Calculator, profit, staking, rewards",
+  	    "name": "DPoPS ROI Calculator",
+  	    "description": "X-Cash Staking Calculator. A profit calculator for X-Cash. Calculate your staking rewards and earnings. Our staking rewards profit calculator helps you work out how much you can earn.",
+  	    "mainContentOfPage": {
+  	      "@context": "http://schema.org/",
+  	      "@type": "WebPageElement",
+  	      "cssSelector": "#main-page"
+  	    }
+  	  }
+  	]
+  	</script>
+
+
+    <!-- JavaScript -->
+    <!-- jquery3.5 -->
+    <script type="text/javascript" language="javascript" src="dist/js/jquery-3.5.1.js"></script>
+    <!-- bootstrap5 -->
+    <script type="text/javascript" language="javascript" src="dist/js/bootstrap.bundle.min.js"></script>
+    <!-- dataTables -->
+    <script type="text/javascript" language="javascript" src="dist/js/jquery.dataTables.min.js"></script>
+  	<script type="text/javascript" language="javascript" src="dist/js/dataTables.bootstrap5.min.js"></script>
+    <script type="text/javascript" language="javascript" src="dist/js/dataTables.responsive.min.js"></script>
+    <script type="text/javascript" language="javascript" src="dist/js/responsive.bootstrap.min.js"></script>
+    <!-- Theme Switch -->
+    <script type="text/javascript" language="javascript" src="dist/js/dark-mode-switch.min.js"></script>
+    <!-- Custom JavaScript -->
+    <script type="text/javascript" language="javascript" src="assets/js/scripts.js"></script>
+    <!-- Medium -->
+    <script type="text/javascript" language="javascript" src="https://medium-widget.pixelpoint.io/widget.js"></script>
+    <script>MediumWidget.Init({renderTo: '#medium-widget', params: {"resource":"https://medium.com/x-cash/","postsPerLine":3,"limit":3,"picture":"big","fields":[],"ratio":"landscape"}})</script>
+
+  </body>
 </html>
