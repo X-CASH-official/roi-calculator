@@ -271,7 +271,7 @@ h6 {
 [data-theme="dark"] .st1 { fill: #f1f1f1; }
 [data-theme="dark"] .st2 { fill: #fa741c; }
 .Online { color: green; }
-.Offline { color: red; }
+.Offline { color: #fa741c; }
 
 table.dataTable th:nth-child(3), table.dataTable td:nth-child(3) {
   text-align: left !important;
