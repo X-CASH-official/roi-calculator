@@ -119,7 +119,7 @@ function populateTable(){
                     // { title: "Fee XCA" },
                     // { title: "Weight %"},
                     { title: "ROI %", responsivePriority: 3 },
-                    { title: "Profit" },
+                    { title: "Profit", responsivePriority: 4 },
                 ]
             });
         });
