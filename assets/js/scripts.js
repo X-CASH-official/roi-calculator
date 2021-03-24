@@ -99,7 +99,7 @@ function populateTable(){
                     orderable: false,
                     targets:   0
                 }],
-                order: [ 7, 'desc' ],
+                order: [ 6, 'desc' ],
 
                 data: delegateDataSet,
                 language: {
