@@ -68,14 +68,14 @@ function populateTable(){
                         // (field.online_status == 'true') ? '<span class="material-icons Online">online_prediction</span>' : '<span class="material-icons Offline">highlight_off</span>',
                         (field.shared_delegate_status === 'solo') ? '<span class="material-icons">person_outline</span>' : ((field.shared_delegate_status === 'shared') ? '<span class="material-icons">groups</span>' : '<span class="material-icons">lock</span>'),
 
-                        (field.total_vote_count / 1000000).toLocaleString(undefined, {maximumFractionDigits: 0}),
+                        // (field.total_vote_count / 1000000).toLocaleString(undefined, {maximumFractionDigits: 0}),
                         totalVotes.toLocaleString(undefined, {maximumFractionDigits: 0}),
                         // field.block_verifier_online_percentage+"%",
                         (field.delegate_fee) ? field.delegate_fee+'%' : 'N/A',
                         // (field.delegate_fee) ?  totalRewardFeeAmount.toLocaleString(undefined, {maximumFractionDigits: 0}) : 'N/A',
                         // myVoteReturnPct.toFixed(2)+'%',
                         myVoteReturnROIPct.toFixed(2)+'%',
-                        myVoteReturnAmount.toFixed(0)//.toLocaleString(undefined, {maximumFractionDigits: 0})
+                        myVoteReturnAmount.toLocaleString(undefined, {maximumFractionDigits: 1})+' XCA' //
                     ];
 
                     delegateDataSet.push(fields);
@@ -99,7 +99,7 @@ function populateTable(){
                     orderable: false,
                     targets:   0
                 }],
-                order: [ 8, 'desc' ],
+                order: [ 7, 'desc' ],
 
                 data: delegateDataSet,
                 language: {
@@ -112,7 +112,7 @@ function populateTable(){
                     { title: "Delegate Name", responsivePriority: 2 },
                     { title: "Mode" },
                     // { title: "Status" },
-                    { title: "Current Votes" },
+                    // { title: "Current Votes" },
                     { title: "Votes + myVote" },
                     // { title: "Online" },
                     { title: "Fee %" },
