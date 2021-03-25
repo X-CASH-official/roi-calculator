@@ -412,3 +412,6 @@ div.dataTables_wrapper div.dataTables_filter input {
 #footer{
   font-weight: 500;
 }
+.material-icons {
+    vertical-align: bottom !important; 
+}
