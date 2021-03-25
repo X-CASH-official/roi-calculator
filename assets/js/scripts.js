@@ -69,7 +69,7 @@ function populateTable(){
                         (field.shared_delegate_status === 'solo') ? '<span class="material-icons">person_outline</span>' : ((field.shared_delegate_status === 'shared') ? '<span class="material-icons">groups</span>' : '<span class="material-icons">lock</span>'),
 
                         // (field.total_vote_count / 1000000).toLocaleString(undefined, {maximumFractionDigits: 0}),
-                        totalVotes.toLocaleString(undefined, {maximumFractionDigits: 0}),
+                        totalVotes.toLocaleString(undefined, {maximumFractionDigits: 0})+' XCA',
                         // field.block_verifier_online_percentage+"%",
                         (field.delegate_fee) ? field.delegate_fee+'%' : 'N/A',
                         // (field.delegate_fee) ?  totalRewardFeeAmount.toLocaleString(undefined, {maximumFractionDigits: 0}) : 'N/A',
