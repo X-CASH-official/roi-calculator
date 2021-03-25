@@ -412,6 +412,20 @@ div.dataTables_wrapper div.dataTables_filter input {
     margin-left: auto;
     margin-right: auto;
 }
+@media only screen and (max-width: 992px){
+  .medium-widget {
+      max-width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+  }
+}
+@media only screen and (max-width: 600px){
+  .medium-widget {
+      max-width: 96%;
+      margin-left: auto;
+      margin-right: auto;
+  }
+}
 .medium-widget-article__title{
     display:none !important
 }
