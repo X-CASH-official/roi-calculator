@@ -49,7 +49,7 @@
         WebFont.load({ google: { families: ["Exo:100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic"] } });
     </script>
     <!-- Custom CSS -->
-    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/style.min.css" rel="stylesheet">
   </head>
 
   <body>
@@ -119,11 +119,10 @@
         <div id="medium-widget"></div>
       </div>
       <h1 class="pt-3">ROI Calculator</h1>
-      <p>Now you can do more than hodling X-Cash; see how much rewards you can possibly earn by staking X-Cash.<br/>
+      <p>
+        Now you can do more than hodling X-Cash; see how much rewards you can possibly earn by staking X-Cash.<br/>
         The rewards predicted by this calculator are only an estimate.<br />
-
       </p>
-      <!-- <h3>for X-Cash DPoPS</h3> -->
       <div class="row  justify-content-center pt-3 pb-2">
         <div class="col-auto form-group  pt-1 pb-2" style="width:417px;">
             <label for="days" class="">Vote Amount</label>
@@ -135,10 +134,6 @@
         <div class="col-auto  pt-1 pb-1">
           <label for="days" class="">Period</label>
           <div class="form-group border-orange">
-            <!-- <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="days" id="period1" value="1">
-              <label class="form-check-label" for="period1">1 Day</label>
-            </div> -->
             <div class="form-check form-check-inline">
               <input class="form-check-input" type="radio" name="days" id="period2" value="7">
               <label class="form-check-label" for="period2">Week</label>
@@ -161,17 +156,16 @@
             <button type="button" class="btn btn-outline-info form-control mb-3" id="calculate">Calculate my profit!</button>
         </div>
       </div>
-      <p>Delegates residing in the top 50 after adding your votes are shown!<br />
+      <p>
+        Delegates residing in the top 50 after adding your votes are shown!<br />
         When you plan to vote for a <span class="material-icons">lock</span> private group node contact the delegate so that he can whitelist your vote (only whitelisted votes participate in rewards payments).
-      <!-- Before voting for a <span class="material-icons">lock</span> private group node, you must first ask the delegate to whitelist your vote. </p> -->
+      </p>
       <div class="table-responsive">
           <table id="delegatesTable" class="table display hover" style="width:100%"></table>
       </div>
     </div>
 
     <div class="disclaimer p-4 text-left text-xs-start">
-      <!-- <p><strong>Note:</strong><br/>
-        Before voting for a <span class="material-icons">lock</span> private group node, you must first ask the delegate to whitelist your vote.</p> -->
       <strong>Disclaimer:</strong><br/>
         This calculator only predicts an estimate of rewards.
         The actual amount of X-Cash earned may vary and will depend on several factors,
@@ -184,7 +178,6 @@
       Made with love by the X-Cash Foundation.
       All rights reserved.
     </footer>
-
 
     <script type="application/ld+json">
     {
@@ -376,7 +369,6 @@
   	  }
   	]
   	</script>
-
 
     <!-- JavaScript -->
     <!-- jquery3.5 -->

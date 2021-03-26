@@ -272,9 +272,6 @@ h6 {
 [data-theme="dark"] .st2 { fill: #fa741c; }
 .Online { color: green; }
 .Offline { color: #ff6200; }
-
-
-
 table.dataTable th:nth-child(2), table.dataTable td:nth-child(2),
 table.dataTable th:nth-child(4), table.dataTable td:nth-child(4),
 table.dataTable th:nth-child(5), table.dataTable td:nth-child(5),
@@ -288,14 +285,9 @@ table.dataTable th:nth-child(8), table.dataTable td:nth-child(8),
 table.dataTable th:nth-child(9), table.dataTable td:nth-child(9){
   text-align: right !important;
 }
-
-/* table.dataTable tr.odd { background-color: rgba(31, 31, 31, 0.1); }
-[data-theme="dark"]  table.dataTable tr.odd { background-color: rgba(241, 241, 241, 0.1); } */
-
 table.dataTable tr:hover {
 	background-color: rgba(17, 137, 165, 0.1) !important;
 }
-
 td > a,td > a:hover,td > a:visited {
     color: #fa741c;
 }
