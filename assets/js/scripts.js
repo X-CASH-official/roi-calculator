@@ -8,8 +8,6 @@ $(document).ready(function() {
     myVoteAmount = 2000000;
     daysToCalculate = $( "input[type='radio']:checked" ).val();
 
-    populateTable();
-
     $("#calculate").click(function(){
         amountValue = $("#amount").val();
         daysToCalculate = $( "input[type='radio']:checked" ).val();
@@ -44,8 +42,14 @@ function populateTable(){
 
         $.getJSON(delegatesDataURL, function(delegateData) {
             var delegateDataSet = [];
+
+            console.log(delegateData[49].total_vote_count);
+            var top50_treshhold = delegateData[49].total_vote_count;
+
             $.each(delegateData, function(i, field) {
-                if(field.shared_delegate_status == "shared" || field.shared_delegate_status == "group") {
+                if( (field.shared_delegate_status == "shared" || field.shared_delegate_status == "group")
+                      && field.online_status == "true"
+                      && ((field.total_vote_count / 1000000) + myVoteAmount) > (top50_treshhold / 1000000) ) {
 
                     var totalRewardFeeAmount    = (totalRewardAmount * field.delegate_fee / 100);
                     var totalRewardToDistribute = (totalRewardAmount - totalRewardFeeAmount);
@@ -58,15 +62,11 @@ function populateTable(){
                         "",
                         '<span class="'+  ((i + 1) <= 50 ? 'Online' : 'Offline') +'">' + (i + 1) + '</span>',
                         '<a class="delegate_link tip" href="http://delegates.xcash.foundation/delegates/delegate_statistics?data='+ field.delegate_name +'" aria-label="Visit '+ field.delegate_name +'" title="Visit '+ field.delegate_name +'">' + field.delegate_name.slice(0, 25) + '</a>',
-                        (field.online_status == 'true') ? '<span class="material-icons Online">online_prediction</span>' : '<span class="material-icons Offline">highlight_off</span>',
                         (field.shared_delegate_status === 'solo') ? '<span class="material-icons">person_outline</span>' : ((field.shared_delegate_status === 'shared') ? '<span class="material-icons">groups</span>' : '<span class="material-icons">lock</span>'),
-                        (field.total_vote_count / 1000000).toLocaleString(undefined, {maximumFractionDigits: 0}),
-                        field.block_verifier_online_percentage+"%",
+                        totalVotes.toLocaleString(undefined, {maximumFractionDigits: 0})+' XCA',
                         (field.delegate_fee) ? field.delegate_fee+'%' : 'N/A',
-                        (field.delegate_fee) ?  totalRewardFeeAmount.toLocaleString(undefined, {maximumFractionDigits: 0}) : 'N/A',
-                        myVoteReturnPct.toFixed(2)+'%',
                         myVoteReturnROIPct.toFixed(2)+'%',
-                        myVoteReturnAmount.toLocaleString(undefined, {maximumFractionDigits: 0})
+                        myVoteReturnAmount.toLocaleString(undefined, {maximumFractionDigits: 1})+' XCA'
                     ];
 
                     delegateDataSet.push(fields);
@@ -90,7 +90,7 @@ function populateTable(){
                     orderable: false,
                     targets:   0
                 }],
-                order: [ 1, 'asc' ],
+                order: [ 6, 'desc' ],
 
                 data: delegateDataSet,
                 language: {
@@ -102,14 +102,10 @@ function populateTable(){
                     { title: "Rank", responsivePriority: 1 },
                     { title: "Delegate Name", responsivePriority: 2 },
                     { title: "Mode" },
-                    { title: "Status" },
-                    { title: "Votes" },
-                    { title: "Online" },
+                    { title: "Votes + myVote" },
                     { title: "Fee %" },
-                    { title: "Fee XCA" },
-                    { title: "Weight %"},
                     { title: "ROI %", responsivePriority: 3 },
-                    { title: "ROI XCA" },
+                    { title: "Profit", responsivePriority: 4 },
                 ]
             });
         });

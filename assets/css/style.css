@@ -271,18 +271,23 @@ h6 {
 [data-theme="dark"] .st1 { fill: #f1f1f1; }
 [data-theme="dark"] .st2 { fill: #fa741c; }
 .Online { color: green; }
-.Offline { color: red; }
-
+.Offline { color: #ff6200; }
+table.dataTable th:nth-child(2), table.dataTable td:nth-child(2),
+table.dataTable th:nth-child(4), table.dataTable td:nth-child(4),
+table.dataTable th:nth-child(5), table.dataTable td:nth-child(5),
+table.dataTable th:nth-child(6), table.dataTable td:nth-child(6){
+  text-align: center !important;
+}
 table.dataTable th:nth-child(3), table.dataTable td:nth-child(3) {
   text-align: left !important;
 }
-/* table.dataTable tr.odd { background-color: rgba(31, 31, 31, 0.1); }
-[data-theme="dark"]  table.dataTable tr.odd { background-color: rgba(241, 241, 241, 0.1); } */
-
+table.dataTable th:nth-child(8), table.dataTable td:nth-child(8),
+table.dataTable th:nth-child(9), table.dataTable td:nth-child(9){
+  text-align: right !important;
+}
 table.dataTable tr:hover {
 	background-color: rgba(17, 137, 165, 0.1) !important;
 }
-
 td > a,td > a:hover,td > a:visited {
     color: #fa741c;
 }
@@ -399,9 +404,26 @@ div.dataTables_wrapper div.dataTables_filter input {
     margin-left: auto;
     margin-right: auto;
 }
+@media only screen and (max-width: 992px){
+  .medium-widget {
+      max-width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+  }
+}
+@media only screen and (max-width: 600px){
+  .medium-widget {
+      max-width: 96%;
+      margin-left: auto;
+      margin-right: auto;
+  }
+}
 .medium-widget-article__title{
     display:none !important
 }
 #footer{
   font-weight: 500;
+}
+.material-icons {
+    vertical-align: bottom !important;
 }
